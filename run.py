@@ -12,13 +12,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-sales = SHEET.worksheet('sales')
+# sales = SHEET.worksheet('sales')
 # data = sales.get_all_values()
 
 
 def get_sales_data():
     """
-    Get sales figures input from user
+    Get sales figures input from user.
+    Run a while loop to collect a valid data
+    and returns the valid data.
     """
     while True:
 
@@ -53,3 +55,17 @@ def validate_data(values):
 
 
 data = get_sales_data()
+
+sales_data = [int(num) for num in data]
+
+def update_sales_worksheet(data):
+    """
+    Update sales worksheet,add new row with the list of data provided
+    """
+    print("Updating sales worksheet ...\n")
+    sales_worksheet = SHEET.worksheet('sales')
+    sales_worksheet.append_row(data)
+    print("Sales work sheet updated successfully.\n")
+
+
+update_sales_worksheet(sales_data)
