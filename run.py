@@ -54,6 +54,16 @@ def validate_data(values):
     return True
 
 
+def get_last_5_entries_sales():
+    """ Collecting the last 5 entries from each coumn of data.
+        Returning a list of lists
+    """
+    sales = SHEET.worksheet('sales')
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    return columns
 
 
 def update_worksheet(data, worksheet):
