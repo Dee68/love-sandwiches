@@ -29,7 +29,7 @@ def get_sales_data():
         print(("Example: 24,12,15,32,40,60 \n"))
 
         data_str = input(("Enter your data here:\n "))
-        # conert string data to list
+        # convert string data to list
         sales_data = data_str.split(',')
         
         if validate_data(sales_data):
